@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # CAP OrderIssuseManagment
+=======
+# CAP App
+>>>>>>> ef6639b (Fragment and Attachment)
 _out
 *.db
 *.sqlite
@@ -32,6 +36,9 @@ mta_archives/
 
 # @cap-js/cds-typer
 @cds-models
+<<<<<<< HEAD
 
 # auto generated wildcard
 db/.env
+=======
+>>>>>>> ef6639b (Fragment and Attachment)

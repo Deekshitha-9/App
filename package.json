@@ -1,9 +1,16 @@
 {
+<<<<<<< HEAD
   "name": "OrderIssuseManagment",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
     "@cap-js/hana": "^2",
+=======
+  "name": "App",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+>>>>>>> ef6639b (Fragment and Attachment)
     "@sap/cds": "^9",
     "express": "^4"
   },
@@ -16,6 +23,7 @@
   },
   "scripts": {
     "start": "cds-serve",
+<<<<<<< HEAD
     "watch-customer": "cds watch --open customer/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy OrderIssuseManagment --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
@@ -24,12 +32,19 @@
     "watch-approver": "cds watch --open approver/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-custtoorder": "cds watch --open custtoorder/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-approval": "cds watch --open approval/index.html?sap-ui-xx-viewCache=false --livereload false"
+=======
+    "watch-app1": "cds watch --open app1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy App --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+>>>>>>> ef6639b (Fragment and Attachment)
   },
   "private": true,
   "workspaces": [
     "app/*"
   ],
   "sapux": [
+<<<<<<< HEAD
     "app/customer",
     "app/order",
     "app/approver",
@@ -42,4 +57,8 @@
       "db": "hana"
     }
   }
+=======
+    "app/app1"
+  ]
+>>>>>>> ef6639b (Fragment and Attachment)
 }

@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "SAP HANA Database Explorer.ShowXsAdvancedConnections": true,
     "SAP HANA Project Explorer.bind.confirm automatic undeployment": false,
     "SAP HANA Project Explorer.bind.confirm existing service": false
+=======
+    "SAP HANA Database Explorer.ShowXsAdvancedConnections": true
+>>>>>>> ef6639b (Fragment and Attachment)
 }

@@ -1,4 +1,5 @@
 _schema-version: 3.3.0
+<<<<<<< HEAD
 ID: OrderIssuseManagment
 description: A simple CAP project.
 version: 1.0.0
@@ -139,12 +140,86 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+=======
+ID: App
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: App-srv
+  type: nodejs
+  path: gen/srv
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    instances: 1
+  build-parameters:
+    builder: npm-ci
+- name: App-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: App-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - app1.zip
+      name: app1
+      target-path: resources/
+- name: app1
+  type: html5
+  path: app/app1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: App-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: App-html5-service
+    service-plan: app-host
+- name: App-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: App-destination-service
+    service-plan: lite
+>>>>>>> ef6639b (Fragment and Attachment)
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
+<<<<<<< HEAD
     - builder: custom
       commands:
         - npm ci
         - npx cds build --production
+=======
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
+>>>>>>> ef6639b (Fragment and Attachment)

@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "xsappname": "OrderIssuseManagment",
+=======
+  "xsappname": "App",
+>>>>>>> ef6639b (Fragment and Attachment)
   "tenant-mode": "dedicated",
   "description": "Security profile of called application",
   "scopes": [],

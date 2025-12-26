@@ -1,6 +1,7 @@
 using db from '../db/schema';
 
 service MyService {
+<<<<<<< HEAD
   @odata.draft.enabled
   entity order as projection on db.Order where OrderStatus = 'Delivered';
   entity Issue as projection on db.Issue;
@@ -29,3 +30,23 @@ annotate MyService.order with
 
 
 
+=======
+
+    entity Car as projection on db.car;
+    entity NfaDetails as projection on db.NfaDetails;
+    entity NfaEventHistory as projection on db.NfaEventHistory;
+    entity NfaVendorData as projection on db.NfaVendorData;
+    entity NfaVendorItemsDetails as projection on db.NfaVendorItemsDetails;
+    entity NfaVendorDueDeligenceDetails as projection on db.NfaVendorDueDeligenceDetails;
+    entity NfaVendorDueDeligenceDetailsGrade  as projection on db.NfaVendorDueDeligenceDetailsGrade;
+    entity NfaAttachments as projection on db.NfaAttachments;
+    entity NfaCommentsHistory as projection on db.NfaCommentsHistory;
+    entity NfaWorkflowHistory as projection on db.NfaWorkflowHistory;
+    entity Rules as projection on db.Rules;
+    entity RulesCondition as projection on db.RulesCondition;
+    entity RulesLevels as projection on db.RulesLevels;
+    entity RulesApprovers as projection on db.RulesApprovers;
+    entity Approvers as projection on db.Approvers;
+
+}
+>>>>>>> ef6639b (Fragment and Attachment)
