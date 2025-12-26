@@ -1,0 +1,215 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "order",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.20.0",
+      "toolsId": "680ebd1f-11f8-48e7-b1b3-3e7d91e124bd"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.143.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "order.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "orderList",
+          "target": "orderList"
+        },
+        {
+          "pattern": "order({key}):?query:",
+          "name": "orderObjectPage",
+          "target": "orderObjectPage"
+        },
+        {
+          "name": "order_OrdertoIssueObjectPage",
+          "pattern": "order({key})/OrdertoIssue({OrdertoIssueKey}):?query:",
+          "target": "order_OrdertoIssueObjectPage"
+        }
+      ],
+      "targets": {
+        "orderList": {
+          "type": "Component",
+          "id": "orderList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/order",
+              "variantManagement": "Page",
+              "navigation": {
+                "order": {
+                  "detail": {
+                    "route": "orderObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  },
+                  "columns": {
+                    "DataField::OrderStatus": {
+                      "width": "10%"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "orderObjectPage": {
+          "type": "Component",
+          "id": "orderObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/order",
+              "navigation": {
+                "OrdertoIssue": {
+                  "detail": {
+                    "route": "order_OrdertoIssueObjectPage"
+                  }
+                }
+              },
+              "content": {
+                "footer": {
+                  "actions": {
+                    "SendForApproval": {
+                      "press": "order.ext.controller.SendForApproval.SendForApproval",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Send For Approval"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "order_OrdertoIssueObjectPage": {
+          "type": "Component",
+          "id": "order_OrdertoIssueObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/order/OrdertoIssue",
+              "content": {
+                "body": {
+                  "sections": {
+                    "Comments": {
+                      "template": "order.ext.fragment.Comments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "GeneralInformation"
+                      },
+                      "title": "Comments"
+                    },
+                    "Attachments": {
+                      "template": "order.ext.fragment.Attachments",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Comments"
+                      },
+                      "title": "Attachments"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#order::orderObjectPage": {
+            "controllerName": "order.ext.controller.Order"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#order::order_OrdertoIssueObjectPage": {
+            "controllerName": "order.ext.controller.Issue"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

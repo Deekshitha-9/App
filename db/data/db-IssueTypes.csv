@@ -1,0 +1,6 @@
+code,description
+DAMAGED,Product damaged
+WRONG_ITEM,Wrong item delivered
+MISSING_ITEM,Missing item
+DELAYED,Delivery delayed
+DEFECTIVE,Defective product
